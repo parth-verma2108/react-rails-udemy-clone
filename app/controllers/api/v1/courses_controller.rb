@@ -3,7 +3,14 @@ class Api::V1::CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    render json: @courses
+    respond_to do |format|
+      format.json  { render :json =>
+        {
+          :courses => @courses,
+          :user_data => user_signed_in? ? current_user : []
+        }
+      }
+    end
   end
 
   def show
