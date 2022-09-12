@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api do
     namespace :v1 do
 
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
       delete 'courses/:id', to: 'courses#destroy'
     end
   end
-  resources :courses
+
   root 'courses#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
